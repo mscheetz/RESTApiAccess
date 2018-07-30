@@ -3,6 +3,11 @@ RESTful Api interactor
 
 Generic RESTful api access methods.  
 
+This library is available on NuGet for download: https://www.nuget.org/packages/RESTApiAccess/  
+```
+PM> Install-Package RESTApiAccess -Version 1.0.0
+```
+
 To initialize:  
 ```
 IRESTRepository _rest = new RESTRepository();
