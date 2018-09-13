@@ -12,6 +12,12 @@ namespace RESTApiAccess
 {
     public class RESTRepository : IRESTRepository
     {
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            MissingMemberHandling = MissingMemberHandling.Ignore
+        };
+
         public RESTRepository()
         {
         }
@@ -48,16 +54,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -96,7 +102,6 @@ namespace RESTApiAccess
                         }
 
                         responseMessage = sb.ToString();
-                        responseMessage = responseMessage.Replace("null", "0");
                     }
 
                     if (!StatusCodeSuccess(response.StatusCode))
@@ -106,16 +111,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -156,16 +161,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -202,16 +207,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -252,16 +257,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -298,16 +303,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
@@ -344,16 +349,16 @@ namespace RESTApiAccess
 
                     try
                     {
-                        return JsonConvert.DeserializeObject<T>(responseMessage);
+                        return JsonConvert.DeserializeObject<T>(responseMessage, settings);
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        return default(T);
+                        throw new Exception(ex.Message);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return default(T);
+                    throw new Exception(ex.Message);
                 }
             }
         }
