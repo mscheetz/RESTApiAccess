@@ -1,11 +1,11 @@
 # RESTApiAccess  
-RESTful Api interactor  
+RESTful Api interactor built using .Net Standard  
 
 Generic RESTful api access methods.  
 
 This library is available on NuGet for download: https://www.nuget.org/packages/RESTApiAccess/  
 ```
-PM> Install-Package RESTApiAccess -Version 1.0.0
+PM> Install-Package RESTApiAccess
 ```
 
 To initialize:  
