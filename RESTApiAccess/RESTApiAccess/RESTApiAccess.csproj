@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Matt Scheetz</Authors>
-    <Description>Generic RESTful Api interactor for .net core</Description>
+    <Description>Generic RESTful Api interactor for .Net Standard</Description>
     <PackageProjectUrl>https://github.com/mscheetz/RESTApiAccess</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mscheetz/RESTApiAccess</RepositoryUrl>
     <Copyright>2018 Matt Scheetz</Copyright>
-    <PackageReleaseNotes>Handle errors and add Json settings for null handling</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated for .Net Standard</PackageReleaseNotes>
     <PackageTags>rest restful api generic</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
