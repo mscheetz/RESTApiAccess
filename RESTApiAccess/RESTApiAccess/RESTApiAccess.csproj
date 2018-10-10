@@ -9,7 +9,7 @@
     <Copyright>2018 Matt Scheetz</Copyright>
     <PackageReleaseNotes>Updated for .Net Standard</PackageReleaseNotes>
     <PackageTags>rest restful api generic</PackageTags>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
