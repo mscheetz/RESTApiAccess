@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,10 +6,11 @@
     <Description>Generic RESTful Api interactor for .Net Standard</Description>
     <PackageProjectUrl>https://github.com/mscheetz/RESTApiAccess</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mscheetz/RESTApiAccess</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <Copyright>2018 Matt Scheetz</Copyright>
-    <PackageReleaseNotes>Updated for .Net Standard</PackageReleaseNotes>
+    <PackageReleaseNotes>Added basic auth endpoints</PackageReleaseNotes>
     <PackageTags>rest restful api generic</PackageTags>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
