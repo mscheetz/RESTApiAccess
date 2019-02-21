@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,9 +28,11 @@ namespace RESTApiAccess
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> GetApi<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> GetApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -39,6 +42,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 try
@@ -74,9 +83,11 @@ namespace RESTApiAccess
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> GetApiStream<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> GetApiStream<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -86,6 +97,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 var responseMessage = String.Empty;
@@ -132,9 +149,11 @@ namespace RESTApiAccess
         /// <typeparam name="U">Type to post</typeparam>
         /// <param name="url">Url to access</param>
         /// <param name="data">Data object being sent</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PostApi<T, U>(string url, U data, Dictionary<string, string> headers = null)
+        public async Task<T> PostApi<T, U>(string url, U data, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -144,6 +163,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
@@ -180,9 +205,11 @@ namespace RESTApiAccess
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PostApi<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> PostApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -192,6 +219,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 try
@@ -228,9 +261,11 @@ namespace RESTApiAccess
         /// <typeparam name="U">Type to post</typeparam>
         /// <param name="url">Url to access</param>
         /// <param name="data">Data object being sent</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PutApi<T, U>(string url, U data, Dictionary<string, string> headers = null)
+        public async Task<T> PutApi<T, U>(string url, U data, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -240,6 +275,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
@@ -276,9 +317,11 @@ namespace RESTApiAccess
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PutApi<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> PutApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -288,6 +331,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 try
@@ -322,9 +371,11 @@ namespace RESTApiAccess
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
-        /// <param name="headers">Http Request headers (optional)</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <param name="username">Username for basic auth</param>
+        /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> DeleteApi<T>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> DeleteApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -334,6 +385,12 @@ namespace RESTApiAccess
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
+                }
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    var secureBytes = ASCIIEncoding.ASCII.GetBytes($"{username}:{password}");
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Basic", Convert.ToBase64String(secureBytes));
                 }
 
                 try
