@@ -1,16 +1,27 @@
-﻿using Newtonsoft.Json;
-using RESTApiAccess.Interface;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -----------------------------------------------------------------------------
+// <copyright file="RESTRepository" company="Matt Scheetz">
+//     Copyright (c) Matt Scheetz All Rights Reserved
+// </copyright>
+// <author name="Matt Scheetz" date="2/20/2019 3:58:01 PM" />
+// -----------------------------------------------------------------------------
 
 namespace RESTApiAccess
 {
+    #region Usings
+
+    using Newtonsoft.Json;
+    using RESTApiAccess.Interface;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    #endregion Usings
+
     public class RESTRepository : IRESTRepository
     {
         JsonSerializerSettings settings = new JsonSerializerSettings
@@ -32,7 +43,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> GetApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> GetApi<T>(string url, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -40,7 +51,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -87,7 +98,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> GetApiStream<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> GetApiStream<T>(string url, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -95,7 +106,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -153,7 +164,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PostApi<T, U>(string url, U data, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> PostApi<T, U>(string url, U data, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -161,7 +172,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -209,7 +220,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PostApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> PostApi<T>(string url, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -217,7 +228,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -265,7 +276,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PutApi<T, U>(string url, U data, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> PutApi<T, U>(string url, U data, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -273,7 +284,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -321,7 +332,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> PutApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> PutApi<T>(string url, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -329,7 +340,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -375,7 +386,7 @@ namespace RESTApiAccess
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
-        public async Task<T> DeleteApi<T>(string url, Dictionary<string, string> headers = null, string username = null, string password = null)
+        public async Task<T> DeleteApi<T>(string url, Dictionary<string, object> headers = null, string username = null, string password = null)
         {
             using (var client = new HttpClient())
             {
@@ -383,7 +394,7 @@ namespace RESTApiAccess
                 {
                     foreach (var header in headers)
                     {
-                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
                 }
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))

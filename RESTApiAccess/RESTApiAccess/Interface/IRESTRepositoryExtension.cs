@@ -34,7 +34,7 @@ namespace RESTApiAccess.Interface
         /// <param name="url">Url to access</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> GetApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        public static async Task<T> GetApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.GetApi<T>(url: url, headers: headers);
         }
@@ -72,7 +72,7 @@ namespace RESTApiAccess.Interface
         /// <param name="url">Url to access</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> GetApiStream<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        public static async Task<T> GetApiStream<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.GetApiStream<T>(url: url, headers: headers);
         }
@@ -113,7 +113,7 @@ namespace RESTApiAccess.Interface
         /// <param name="data">Data object being sent</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> PostApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, string> headers)
+        public static async Task<T> PostApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, object> headers)
         {
             return await service.PostApi<T, U>(url: url, data: data, headers: headers);
         }
@@ -151,7 +151,7 @@ namespace RESTApiAccess.Interface
         /// <param name="url">Url to access</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> PostApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        public static async Task<T> PostApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.PostApi<T>(url: url, headers: headers);
         }
@@ -191,7 +191,7 @@ namespace RESTApiAccess.Interface
         /// <param name="data">Data object being sent</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> PutApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, string> headers)
+        public static async Task<T> PutApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, object> headers)
         {
             return await service.PutApi<T, U>(url: url, data: data, headers: headers);
         }
@@ -229,7 +229,7 @@ namespace RESTApiAccess.Interface
         /// <param name="url">Url to access</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> PutApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        public static async Task<T> PutApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.PutApi<T>(url: url, headers: headers);
         }
@@ -265,7 +265,7 @@ namespace RESTApiAccess.Interface
         /// <param name="url">Url to access</param>
         /// <param name="headers">Http Request headers</param>
         /// <returns>Type requested</returns>
-        public static async Task<T> DeleteApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        public static async Task<T> DeleteApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.DeleteApi<T>(url: url, headers: headers);
         }
