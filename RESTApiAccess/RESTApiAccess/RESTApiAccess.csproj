@@ -8,9 +8,9 @@
     <RepositoryUrl>https://github.com/mscheetz/RESTApiAccess</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <Copyright>2018 Matt Scheetz</Copyright>
-    <PackageReleaseNotes>Fixed Dictionary data types</PackageReleaseNotes>
+    <PackageReleaseNotes>Support multiple dictionary types</PackageReleaseNotes>
     <PackageTags>rest restful api generic</PackageTags>
-    <Version>1.3.1</Version>
+    <Version>1.3.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://raw.githubusercontent.com/mscheetz/RESTApiAccess/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
