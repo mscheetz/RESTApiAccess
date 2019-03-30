@@ -10,6 +10,7 @@ namespace RESTApiAccess.Interface
     #region Usings
 
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     #endregion Usings
@@ -37,6 +38,20 @@ namespace RESTApiAccess.Interface
         public static async Task<T> GetApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.GetApi<T>(url: url, headers: headers).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get call to api
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> GetApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.GetApi<T>(url: url, headers: newHeaders).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -75,6 +90,21 @@ namespace RESTApiAccess.Interface
         public static async Task<T> GetApiStream<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.GetApiStream<T>(url: url, headers: headers).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Get call to api stream 
+        /// For large json responses
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> GetApiStream<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.GetApiStream<T>(url: url, headers: newHeaders).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -125,6 +155,22 @@ namespace RESTApiAccess.Interface
         /// <typeparam name="U">Type to post</typeparam>
         /// <param name="url">Url to access</param>
         /// <param name="data">Data object being sent</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> PostApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.PostApi<T, U>(url: url, data: data, headers: newHeaders).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Post call to api with data
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <typeparam name="U">Type to post</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="data">Data object being sent</param>
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
@@ -154,6 +200,20 @@ namespace RESTApiAccess.Interface
         public static async Task<T> PostApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.PostApi<T>(url: url, headers: headers).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Post call to api without data
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> PostApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.PostApi<T>(url: url, headers: newHeaders).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -203,6 +263,22 @@ namespace RESTApiAccess.Interface
         /// <typeparam name="U">Type to post</typeparam>
         /// <param name="url">Url to access</param>
         /// <param name="data">Data object being sent</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> PutApi<T, U>(this IRESTRepository service, string url, U data, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.PutApi<T, U>(url: url, data: data, headers: newHeaders).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Put call to api with data
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <typeparam name="U">Type to post</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="data">Data object being sent</param>
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
@@ -232,6 +308,20 @@ namespace RESTApiAccess.Interface
         public static async Task<T> PutApi<T>(this IRESTRepository service, string url, Dictionary<string, object> headers)
         {
             return await service.PutApi<T>(url: url, headers: headers).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Put call to api without data
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="url">Url to access</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> PutApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.PutApi<T>(url: url, headers: newHeaders).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -275,12 +365,38 @@ namespace RESTApiAccess.Interface
         /// </summary>
         /// <typeparam name="T">Type to return</typeparam>
         /// <param name="url">Url to access</param>
+        /// <param name="headers">Http Request headers</param>
+        /// <returns>Type requested</returns>
+        public static async Task<T> DeleteApi<T>(this IRESTRepository service, string url, Dictionary<string, string> headers)
+        {
+            var newHeaders = DictionaryConverter(headers);
+
+            return await service.DeleteApi<T>(url: url, headers: newHeaders).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete call to api
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="url">Url to access</param>
         /// <param name="username">Username for basic auth</param>
         /// <param name="password">Password for basic auth</param>
         /// <returns>Type requested</returns>
         public static async Task<T> DeleteApi<T>(this IRESTRepository service, string url, string username, string password)
         {
             return await service.DeleteApi<T>(url: url, username: username, password: password).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Convert a Dictionary/string, string/ to Dictionary/string, object/
+        /// </summary>
+        /// <param name="input">Dictionary to convert</param>
+        /// <returns>converted dictionary</returns>
+        private static Dictionary<string, object> DictionaryConverter(Dictionary<string, string> input)
+        {
+            var dictionary = input.ToDictionary(pair => pair.Key, pair => (object)pair.Value);
+
+            return dictionary;
         }
     }
 }
