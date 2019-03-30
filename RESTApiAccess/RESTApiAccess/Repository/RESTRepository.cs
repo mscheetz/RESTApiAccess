@@ -63,9 +63,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.GetAsync(url);
+                    var response = await client.GetAsync(url).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
@@ -119,10 +119,10 @@ namespace RESTApiAccess
                 var responseMessage = String.Empty;
                 try
                 {
-                    var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                    var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
                     var sb = new StringBuilder();
 
-                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
                     {
                         using (var sr = new StreamReader(stream, Encoding.UTF8))
                         {
@@ -186,9 +186,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.PostAsync(url, content);
+                    var response = await client.PostAsync(url, content).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
@@ -240,9 +240,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.PostAsync(url, null);
+                    var response = await client.PostAsync(url, null).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
@@ -298,9 +298,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.PutAsync(url, content);
+                    var response = await client.PutAsync(url, content).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
@@ -352,9 +352,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.PutAsync(url, null);
+                    var response = await client.PutAsync(url, null).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
@@ -406,9 +406,9 @@ namespace RESTApiAccess
 
                 try
                 {
-                    var response = await client.DeleteAsync(url);
+                    var response = await client.DeleteAsync(url).ConfigureAwait(false);
 
-                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    string responseMessage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                     if (!StatusCodeSuccess(response.StatusCode))
                     {
